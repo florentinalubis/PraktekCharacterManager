@@ -1,40 +1,41 @@
+
 package com.unpri.charactermanager;
 
 import javax.swing.SwingUtilities;
 
 import com.unpri.charactermanager.model.Character;
-import com.unpri.charactermanager.model.CharacterType;
 import com.unpri.charactermanager.model.CharacterManager;
+import com.unpri.charactermanager.model.CharacterType;
 import com.unpri.charactermanager.view.MainWindow;
 
 public class Main {
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
 
             // Membuat pengelola karakter
-        CharacterManager manager = new CharacterManager();
+            CharacterManager manager = new CharacterManager();
 
             // Karakter 1
-        manager.addCharacter(
+            manager.addCharacter(
                 new Character("Arka", 10, CharacterType.WARRIOR)
-        );
+            );
 
             // Karakter 2
-        manager.addCharacter(
+            manager.addCharacter(
                 new Character("Luna", 8, CharacterType.MAGE)
-        );
+            );
 
             // Karakter 3
-        manager.addCharacter(
+            manager.addCharacter(
                 new Character("Raka", 6, CharacterType.WARRIOR)
-        );
+            );
 
             // Karakter 4
-        manager.addCharacter(
+            manager.addCharacter(
                 new Character("Nara", 5, CharacterType.HEALER)
-        );
+            );
 
             // Karakter 5
             manager.addCharacter(
@@ -44,6 +45,16 @@ public static void main(String[] args) {
             // Karakter 6
             manager.addCharacter(
                 new Character("Frodo", 1, CharacterType.ARCHER)
+            );
+
+            // Karakter 7
+            manager.addCharacter(
+                new Character("Gimli", 15, CharacterType.WARRIOR)
+            );
+
+            // Karakter 8
+            manager.addCharacter(
+                new Character("Arwen", 20, CharacterType.MAGE)
             );
 
             // Membuka jendela aplikasi

@@ -157,3 +157,74 @@ Pengaturan tampilan ditempatkan di `AppTheme.java` dan `MainWindow.java` karena 
 
 ### E. Google Docs
 Link analisis properti dan MVC: **[https://docs.google.com/document/d/1Qvs1BCR-A1_fuWY_5GIL0TsltsbO51DlbijHHL1sEAU/edit?usp=sharing]**
+
+
+
+# TP12 - Character Manager Sprint #5
+
+## A. Implementasi Layout
+
+Aplikasi menggunakan BorderLayout dengan empat wilayah utama:
+
+- NORTH: Header dan statistik.
+- CENTER: Daftar kartu karakter menggunakan JScrollPane.
+- EAST: Legenda role menggunakan BoxLayout.
+- SOUTH: Status bar dan versi aplikasi.
+
+## B. Panel Tambahan
+
+Panel statistik menggunakan GridLayout 2x2
+untuk menampilkan total karakter, rata-rata level,
+jumlah Warrior, dan jumlah Mage.
+
+BoxLayout dipilih untuk menyusun daftar kartu
+dan legenda secara vertikal.
+
+GridLayout tidak dipilih untuk daftar kartu
+karena kartu lebih sesuai ditampilkan sebagai
+daftar vertikal yang dapat digulir.
+
+## C. Wireframe
+
+```text
++--------------------------------------+
+|              HEADER                  |
+|--------------------------------------|
+| Total | Average                      |
+| Warrior | Mage                        |
++---------------------------+----------+
+|                           |          |
+|       DAFTAR KARAKTER     | LEGENDA  |
+|       [Kartu Arka]        | Warrior  |
+|       [Kartu Luna]        | Mage     |
+|       [Kartu Raka]        | Archer   |
+|       [Kartu Nara]        | Healer   |
+|       [Kartu ...]         |          |
+|                           |          |
++---------------------------+----------+
+| Status siap digunakan        v0.5    |
++--------------------------------------+
+```
+
+## D. Screenshot Pengujian
+
+### 1. Ukuran Awal
+![Screenshot Awal](![alt text](awal.png))
+
+### 2. Jendela Diperlebar
+![Screenshot Lebar](![alt text](lebar.png))
+
+### 3. Jendela Diperkecil
+![Screenshot Kecil](![alt text](kecil.png))
+
+## E. Pengamatan Resize
+
+| Kondisi | Prediksi | Hasil Aktual |
+|---|---|---|
+| Awal | Semua wilayah terlihat | Isi setelah pengujian |
+| Lebar | CENTER mendapat ruang lebih | Isi setelah pengujian |
+| Kecil | Scrollbar muncul jika diperlukan | Isi setelah pengujian |
+
+## F. Analisis Layout dan MVC
+
+Link Google Docs: [https://docs.google.com/document/d/1m8d6u18n8jnqE6zOjf0ijdmBn-_Le9dgI2MqfLYtquI/edit?usp=sharing]
