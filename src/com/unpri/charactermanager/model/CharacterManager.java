@@ -2,33 +2,61 @@
 package com.unpri.charactermanager.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CharacterManager {
 
-    private final ArrayList<Character> characters =
-            new ArrayList<>();
+    private final List<Character> characters = new ArrayList<>();
 
-    // Menambahkan karakter jika belum ada nama duplikat
-    public boolean addCharacter(Character character) {
+    private static final int MAX_CHARACTERS = 20;
+
+    // Menambahkan karakter
+    public void addCharacter(Character character) {
 
         if (character == null) {
-            return false;
+            throw new IllegalArgumentException(
+                "Karakter tidak boleh kosong!"
+            );
         }
 
-        if (findByName(character.getName()) != null) {
-            return false;
+        // Validasi nama duplikat
+        if (isNameTaken(character.getName())) {
+            throw new IllegalArgumentException(
+                "Nama karakter sudah digunakan!"
+            );
+        }
+
+        // Validasi maksimal karakter
+        if (characters.size() >= MAX_CHARACTERS) {
+            throw new IllegalArgumentException(
+                "Jumlah karakter maksimal adalah 20!"
+            );
         }
 
         characters.add(character);
-        return true;
     }
 
-    // Mencari karakter berdasarkan nama
-    public Character findByName(String name) {
+    // Memeriksa nama duplikat
+    public boolean isNameTaken(String name) {
 
-        if (name == null) {
-            return null;
+        if (name == null || name.trim().isEmpty()) {
+            return false;
         }
+
+        for (Character character : characters) {
+
+            if (character.getName()
+                    .equalsIgnoreCase(name.trim())) {
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Mencari karakter
+    public Character findCharacter(String name) {
 
         for (Character character : characters) {
 
@@ -42,17 +70,21 @@ public class CharacterManager {
         return null;
     }
 
-    // Menghapus karakter berdasarkan nama
+    // Menghapus karakter
     public boolean removeCharacter(String name) {
 
-        Character found = findByName(name);
+        Character character = findCharacter(name);
 
-        if (found == null) {
-            return false;
+        if (character != null) {
+            return characters.remove(character);
         }
 
-        characters.remove(found);
-        return true;
+        return false;
+    }
+
+    // Mengambil seluruh karakter
+    public List<Character> getAllCharacters() {
+        return new ArrayList<>(characters);
     }
 
     // Menghitung total karakter
@@ -60,54 +92,24 @@ public class CharacterManager {
         return characters.size();
     }
 
-    // Mengembalikan salinan daftar karakter
-    public ArrayList<Character> getAllCharacters() {
-        return new ArrayList<>(characters);
-    }
-
     // Menghitung rata-rata level
     public double getAverageLevel() {
 
         if (characters.isEmpty()) {
-            return 0.0;
-        }
-
-        int totalLevel = 0;
-
-        for (Character character : characters) {
-            totalLevel += character.getLevel();
-        }
-
-        return (double) totalLevel / characters.size();
-    }
-
-    // Mencari karakter berdasarkan tipe
-    public ArrayList<Character> findByType(
-            CharacterType type) {
-
-        ArrayList<Character> result =
-                new ArrayList<>();
-
-        if (type == null) {
-            return result;
-        }
-
-        for (Character character : characters) {
-
-            if (character.getType() == type) {
-                result.add(character);
-            }
-        }
-
-        return result;
-    }
-
-    // Menghitung jumlah karakter berdasarkan tipe
-    public int countByType(CharacterType type) {
-
-        if (type == null) {
             return 0;
         }
+
+        int total = 0;
+
+        for (Character character : characters) {
+            total += character.getLevel();
+        }
+
+        return (double) total / characters.size();
+    }
+
+    // Menghitung karakter berdasarkan role
+    public int countByType(CharacterType type) {
 
         int count = 0;
 

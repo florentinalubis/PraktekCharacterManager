@@ -228,3 +228,105 @@ daftar vertikal yang dapat digulir.
 ## F. Analisis Layout dan MVC
 
 Link Google Docs: [https://docs.google.com/document/d/1m8d6u18n8jnqE6zOjf0ijdmBn-_Le9dgI2MqfLYtquI/edit?usp=sharing]
+
+
+
+# TP14 - Character Manager Sprint #6
+
+## A. Deskripsi
+Sprint #6 mengembangkan aplikasi Character Manager
+dengan menambahkan form input, validasi, dan analisis MVC.
+
+## B. Fitur
+1. Input nama menggunakan JTextField.
+2. Pemilihan role menggunakan JComboBox.
+3. Pemilihan level menggunakan JSpinner.
+4. Validasi nama kosong.
+5. Validasi panjang dan format nama.
+6. Validasi nama duplikat.
+7. Validasi level MAGE maksimal 60.
+8. Validasi jumlah karakter maksimal 20.
+9. Pesan error inline dengan border merah.
+10. Refresh daftar karakter secara otomatis.
+
+## C. Pembagian MVC
+
+### Model
+- Character.java
+- CharacterType.java
+- CharacterManager.java
+
+Model bertanggung jawab terhadap aturan data,
+validasi level, role, nama, dan jumlah karakter.
+
+### View
+- MainWindow.java
+- CharacterFormPanel.java
+- AppTheme.java
+
+View bertanggung jawab terhadap tampilan,
+input pengguna, pesan kesalahan, dan interaksi.
+
+## D. Validasi Tambahan
+
+1. Nama tidak boleh menggunakan spasi ganda.
+   Aturan ini diletakkan di View karena berkaitan
+   dengan pemeriksaan input pengguna.
+
+2. Jumlah karakter maksimal 20.
+   Aturan ini diletakkan di Model melalui
+   CharacterManager karena berkaitan dengan
+   pengelolaan jumlah data.
+
+## E. Screenshot
+
+### 1. Error Nama Kosong
+![Error Nama Kosong](![alt text](nama_kosong.png))
+
+### 2. Error Nama Duplikat
+![Error Nama Duplikat](![alt text](nama_duplikat.png))
+
+### 3. Berhasil Menambahkan Karakter
+![Berhasil](![alt text](tambah_karakter.png))
+
+## F. Tabel Pengujian
+
+| No | Input | Hasil Diharapkan | Hasil Nyata | Lapisan |
+|---|---|---|---|---|
+| 1 | Kosong | Ditolak | Isi setelah pengujian | View |
+| 2 | Lebih 20 karakter | Ditolak | Isi setelah pengujian | View |
+| 3 | 12345 | Ditolak | Isi setelah pengujian | View |
+| 4 | Nama duplikat | Ditolak | Isi setelah pengujian | View |
+| 5 | Spasi ganda | Ditolak | Isi setelah pengujian | View |
+| 6 | MAGE level 70 | Ditolak | Isi setelah pengujian | Model |
+| 7 | Bima WARRIOR 10 | Diterima | Isi setelah pengujian | View + Model |
+| 8 | Karakter ke-21 | Ditolak | Isi setelah pengujian | Model |
+
+## G. Kompromi Sementara
+
+Pada Sprint #6, ActionListener masih digunakan
+langsung di CharacterFormPanel untuk menangani
+tombol tambah karakter. View juga memanggil
+manager.addCharacter() secara langsung.
+
+Pendekatan ini dipilih untuk menyederhanakan
+integrasi form dan model pada tahap pembelajaran.
+Namun, pendekatan tersebut membuat View masih
+memiliki ketergantungan terhadap Model.
+
+Pada pertemuan berikutnya, pola MVC dapat
+disempurnakan dengan memindahkan pengendalian
+aksi ke Controller agar tanggung jawab setiap
+lapisan menjadi lebih terpisah.
+
+## H. Kesimpulan
+
+Sprint #6 berhasil mengembangkan aplikasi
+Character Manager dengan form input, validasi
+berlapis, serta penerapan konsep MVC.
+Validasi dilakukan pada View untuk memberikan
+umpan balik kepada pengguna dan pada Model
+untuk menjaga konsistensi data.
+
+## I. Google Docs
+[https://docs.google.com/document/d/1YbdFYtZn7hl9-aCBKuRfL0-AapQA5q-XLYQCtOXkHOM/edit?usp=sharing]
